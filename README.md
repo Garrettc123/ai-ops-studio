@@ -1,322 +1,357 @@
 # AI Ops Studio
 
-> Enterprise-grade AI-powered workflow automation platform with multi-agent orchestration, Temporal workflows, and comprehensive observability.
+## Overview
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python&logoColor=white)](https://www.python.org/)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?logo=kubernetes&logoColor=white)](https://kubernetes.io/)
-
-## 🚀 Overview
-
-AI Ops Studio is a production-ready SaaS platform that enables businesses to automate complex workflows using AI agents powered by Anthropic Claude. The platform orchestrates multi-step processes across sales, operations, analytics, and custom domains.
+**AI Ops Studio** is a multi-agent workflow automation platform designed for small businesses and agencies, enabling users to design, run, and monitor AI agents for sales and operations workflows.
 
 ### Key Features
+- **Visual Workflow Designer**: Drag-and-drop interface for designing multi-agent workflows
+- **Multi-Agent Orchestration**: Hierarchical architecture with coordinator, planner, supervisor, and specialist agents
+- **100+ Pre-built Connectors**: Integrations with CRM, email, databases, APIs, and business applications
+- **Real-time Observability**: Comprehensive monitoring, tracing, and analytics dashboards
+- **Enterprise Security**: SOC 2, GDPR, CCPA compliance with SSO and advanced controls
+- **Usage-Based Pricing**: Transparent, scalable pricing tiers for all business sizes
 
-✨ **Multi-Agent System** - Supervisor, Sales, Operations, Analytics, and Custom agents
-🔄 **Workflow Orchestration** - Temporal-based deterministic workflows with state management
-🧠 **RAG Integration** - Context-aware retrieval with Pinecone vector database
-📊 **Real-Time Monitoring** - OpenTelemetry, Prometheus, and Grafana integration
-🔒 **Enterprise Security** - End-to-end encryption, RBAC, audit logging, SOC 2 compliance
-💰 **Cost Optimization** - Smart model selection and token usage optimization
-🏢 **Multi-Tenancy** - Database and application-level tenant isolation
-⚡ **Production Ready** - Comprehensive error handling, retries, and circuit breakers
-📈 **Auto-Scaling** - Kubernetes HPA with intelligent scaling policies
-🔍 **Observability** - Distributed tracing, metrics, and structured logging
+---
 
-## 📚 Documentation
-
-Comprehensive documentation is available in the `/docs` directory:
-
-- **[Complete Implementation Guide](./docs/01-complete-implementation.md)** (40,000+ words)
-  - Architecture overview
-  - API specifications
-  - Database schema
-  - Security implementation
-  - Go-to-market strategy
-
-- **[Advanced Features](./docs/02-advanced-implementation.md)** (40,000+ words)
-  - Infrastructure as Code (Terraform)
-  - Multi-tenancy implementation
-  - Custom agent builder
-  - RAG implementation
-  - Cost optimization
-
-- **[Service Implementations](./docs/03-services-implementation.md)** (40,000+ words)
-  - API Gateway (Express.js)
-  - Orchestration Service (Temporal)
-  - Agent Runtime (Python/FastAPI)
-  - Integration handlers
-  - Frontend components
-
-- **[DevOps & Deployment](./docs/04-devops-deployment.md)** (40,000+ words)
-  - Docker & Kubernetes
-  - Testing strategies
-  - Deployment runbooks
-  - Monitoring & alerting
-  - Troubleshooting guide
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     Frontend (React)                         │
-│              Workflow Builder | Execution Monitor           │
-└──────────────────────┬──────────────────────────────────────┘
-                       │
-┌──────────────────────▼──────────────────────────────────────┐
-│                  API Gateway (Express.js)                    │
-│         REST APIs | GraphQL | WebSocket | Auth              │
-└──────────────────────┬──────────────────────────────────────┘
-                       │
-        ┌──────────────┼──────────────┐
-        │              │              │
-┌───────▼──────┐ ┌────▼─────┐ ┌─────▼──────┐
-│ Orchestrator │ │  Agent   │ │Integration │
-│  (Temporal)  │ │ Runtime  │ │  Service   │
-│              │ │(FastAPI) │ │            │
-└──────┬───────┘ └────┬─────┘ └─────┬──────┘
-       │              │              │
-       └──────────────┼──────────────┘
-                      │
-        ┌─────────────┼─────────────┐
-        │             │             │
-┌───────▼──────┐ ┌───▼────┐ ┌─────▼──────┐
-│  PostgreSQL  │ │ Redis  │ │  Pinecone  │
-│   (Primary)  │ │(Cache) │ │   (RAG)    │
-└──────────────┘ └────────┘ └────────────┘
-```
-
-## 🛠️ Tech Stack
-
-### Backend
-- **Languages**: TypeScript, Python 3.11
-- **Frameworks**: Express.js, FastAPI
-- **Orchestration**: Temporal.io
-- **AI/ML**: Anthropic Claude, LangGraph, LangChain
-- **Databases**: PostgreSQL 15, Redis 7, Pinecone
-
-### Frontend
-- **Framework**: React 18 with TypeScript
-- **State Management**: React Query, Zustand
-- **UI**: Tailwind CSS, shadcn/ui
-- **Visualization**: ReactFlow, Recharts
-
-### Infrastructure
-- **Container**: Docker
-- **Orchestration**: Kubernetes (GKE)
-- **IaC**: Terraform
-- **CI/CD**: GitHub Actions
-- **Monitoring**: Prometheus, Grafana, OpenTelemetry
-- **Secrets**: HashiCorp Vault
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 18+
-- Python 3.11+
-- Docker & Docker Compose
-- PostgreSQL 15+
-- Redis 7+
-
-### Local Development Setup
+## Quick Start
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Garrettc123/ai-ops-studio.git
+   git clone https://github.com/garrettc123/ai-ops-studio.git
    cd ai-ops-studio
    ```
 
-2. **Set up environment variables**
+2. **Install dependencies**
    ```bash
-   cp .env.example .env
-   # Edit .env with your API keys and configuration
+   npm install
    ```
 
-3. **Start services with Docker Compose**
+3. **Set up environment variables**
    ```bash
-   docker-compose up -d
+   cp .env.example .env.local
    ```
 
-4. **Run database migrations**
+4. **Start development server**
    ```bash
-   npm run migrate
+   npm run dev
    ```
 
-5. **Access the application**
-   - Frontend: http://localhost:3000
-   - API Gateway: http://localhost:3000/api
-   - Temporal UI: http://localhost:8080
-   - Grafana: http://localhost:3001
+---
 
-### Environment Variables
-
-```env
-# Application
-NODE_ENV=development
-API_VERSION=v1
-
-# Database
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/aiopsstudio
-
-# Redis
-REDIS_URL=redis://localhost:6379
-
-# AI/ML
-ANTHROPIC_API_KEY=your_anthropic_key
-PINECONE_API_KEY=your_pinecone_key
-PINECONE_ENVIRONMENT=us-west1-gcp
-
-# Authentication
-JWT_SECRET=your_jwt_secret_key
-REFRESH_TOKEN_SECRET=your_refresh_token_secret
-
-# Temporal
-TEMPORAL_ADDRESS=localhost:7233
-
-# Monitoring
-OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
-```
-
-## 📦 Project Structure
+## Project Structure
 
 ```
 ai-ops-studio/
 ├── docs/                          # Comprehensive documentation
-│   ├── 01-complete-implementation.md
-│   ├── 02-advanced-implementation.md
-│   ├── 03-services-implementation.md
-│   └── 04-devops-deployment.md
+│   ├── ARCHITECTURE.md            # System design & architecture
+│   ├── DATA_MODELS.md             # Database schemas & entities
+│   ├── ROADMAP.md                 # 12-month implementation roadmap
+│   ├── PRICING_STRATEGY.md        # Pricing tiers & monetization
+│   ├── SECURITY.md                # Security & compliance framework
+│   └── TECH_STACK.md              # Technology recommendations
 ├── services/                      # Microservices
-│   ├── api-gateway/              # Express.js API Gateway
-│   ├── orchestrator/             # Temporal workflow orchestrator
-│   ├── agent-runtime/            # Python agent execution runtime
-│   ├── integration-service/      # External integrations
-│   └── notification-service/     # Notification handler
-├── frontend/                      # React web application
-│   └── web-app/
-├── infrastructure/                # Infrastructure as Code
-│   ├── terraform/                # Terraform configurations
-│   ├── kubernetes/               # K8s manifests
-│   └── scripts/                  # Deployment scripts
-├── tests/                         # Test suites
-│   ├── unit/
-│   ├── integration/
-│   ├── e2e/
-│   └── load/
-├── .github/                       # GitHub Actions workflows
-│   └── workflows/
-├── docker-compose.yml             # Local development setup
-└── README.md
+│   ├── api-gateway/               # REST/GraphQL API layer
+│   ├── auth-service/              # Authentication & authorization
+│   ├── workflow-engine/           # Workflow orchestration
+│   ├── agent-runtime/             # Agent execution environment
+│   ├── observability/             # Monitoring & tracing
+│   ├── billing-service/           # Subscription & usage tracking
+│   └── notification-service/      # Alerts & notifications
+├── frontend/                      # User interface
+│   ├── web-app/                   # React/Next.js application
+│   └── component-library/         # Reusable UI components
+├── infrastructure/                # DevOps & deployment
+│   ├── terraform/                 # Infrastructure as Code
+│   ├── kubernetes/                # K8s manifests
+│   └── docker/                    # Container definitions
+├── shared/                        # Shared libraries
+│   ├── data-models/               # Schemas & types
+│   ├── sdk/                       # Client SDKs
+│   └── common-utils/              # Utilities
+└── ml-models/                     # Machine learning
+    ├── evaluators/                # Custom evaluation models
+    └── embeddings/                # Vector embeddings
 ```
-
-## 🧪 Testing
-
-```bash
-# Run all tests
-npm run test
-
-# Unit tests
-npm run test:unit
-
-# Integration tests
-npm run test:integration
-
-# E2E tests
-npm run test:e2e
-
-# Load tests
-npm run test:load
-
-# Coverage report
-npm run test:coverage
-```
-
-## 🚢 Deployment
-
-### Staging
-```bash
-./infrastructure/scripts/deploy.sh staging v1.0.0
-```
-
-### Production
-```bash
-./infrastructure/scripts/deploy.sh production v1.0.0
-```
-
-See [Deployment Guide](./docs/04-devops-deployment.md) for detailed instructions.
-
-## 📊 Monitoring & Observability
-
-- **Metrics**: Prometheus scrapes metrics from all services
-- **Traces**: OpenTelemetry distributed tracing
-- **Logs**: Structured logging with correlation IDs
-- **Dashboards**: Pre-configured Grafana dashboards
-- **Alerts**: Prometheus AlertManager with Slack integration
-
-## 🔒 Security
-
-- **Authentication**: JWT-based with refresh tokens
-- **Authorization**: Role-based access control (RBAC)
-- **Encryption**: AES-256-GCM for data at rest, TLS 1.3 in transit
-- **Secrets Management**: HashiCorp Vault integration
-- **Audit Logging**: Comprehensive audit trail
-- **Compliance**: SOC 2, GDPR, HIPAA ready
-
-## 💰 Pricing Tiers
-
-| Tier | Price | Workflows | Executions | Users | Support |
-|------|-------|-----------|------------|-------|----------|
-| **Starter** | $49/mo | 10 | 1,000/mo | 3 | Email |
-| **Professional** | $199/mo | 50 | 10,000/mo | 10 | Priority |
-| **Business** | $499/mo | Unlimited | 50,000/mo | 25 | Dedicated |
-| **Enterprise** | Custom | Unlimited | Unlimited | Unlimited | White-glove |
-
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Anthropic** for Claude API
-- **Temporal.io** for workflow orchestration
-- **LangChain** for agent framework
-- **The Open Source Community** for amazing tools
-
-## 📞 Support
-
-- **Documentation**: [Full docs](./docs/)
-- **Issues**: [GitHub Issues](https://github.com/Garrettc123/ai-ops-studio/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Garrettc123/ai-ops-studio/discussions)
-- **Email**: support@aiopsstudio.com
-
-## 🗺️ Roadmap
-
-### Q1 2026
-- [ ] Enhanced custom agent builder with visual programming
-- [ ] Multi-modal agent support (vision, audio)
-- [ ] Advanced workflow templates marketplace
-- [ ] Mobile app (iOS/Android)
-
-### Q2 2026
-- [ ] Fine-tuning custom models
-- [ ] Advanced analytics & BI dashboards
-- [ ] Workflow versioning & rollback
-- [ ] Multi-cloud support (AWS, Azure)
-
-### Q3 2026
-- [ ] Agent collaboration framework
-- [ ] Real-time collaborative editing
-- [ ] Advanced cost allocation
-- [ ] White-label solution
 
 ---
 
-**Built with ❤️ by the AI Ops Studio Team**
+## Architecture Highlights
 
-*Empowering businesses to automate intelligently.*
+### Multi-Layer Architecture Design
+
+**Layer 1: Data Foundation**
+- Real-time data synchronization with event-driven architecture
+- Centralized data warehouse with quality assurance
+- Secure API gateway with rate limiting
+
+**Layer 2: Agent Orchestration Core**
+- Hierarchical multi-agent coordinator
+- Visual workflow designer with multiple orchestration patterns
+- Dynamic task graph management with asynchronous execution
+
+**Layer 3: Execution & Automation**
+- Containerized agent runtime environment
+- 100+ pre-built tool integrations
+- Error recovery with contextual rollback
+
+**Layer 4: Observability & Monitoring**
+- Real-time dashboard with agent performance metrics
+- Distributed tracing showing decision paths
+- Custom evaluation framework for quality metrics
+
+**Layer 5: User Interface & Experience**
+- Low-code workflow builder
+- Role-based analytics dashboards
+- Collaboration hub for team workflows
+
+See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for detailed system design.
+
+---
+
+## Core Features
+
+### Workflow Management
+- Drag-and-drop visual builder
+- Sequential, parallel, and conditional execution patterns
+- 50+ pre-built workflow templates
+- Version control with rollback capabilities
+
+### Agent Configuration
+- 5+ specialized agent types (Sales Qualifier, Data Enrichment, Email Writer, etc.)
+- Customizable prompts with variable injection
+- Multi-model support (GPT-4, Claude, Gemini)
+- Tool access permissions and API quota management
+
+### Execution Engine
+- Asynchronous task processing with near-linear scaling
+- Automatic retry with exponential backoff
+- Circuit breaker patterns for resilience
+- Comprehensive audit logs
+
+### Observability & Analytics
+- Real-time agent performance tracking
+- Token usage and cost analysis
+- Custom alert rules for SLA breaches
+- A/B testing for prompt optimization
+
+---
+
+## Pricing Tiers
+
+| Plan | Monthly | Workflows | Executions | Team Members | Support |
+|------|---------|-----------|-----------|--------------|---------|
+| **Starter** | $49 | 5 | 500 | 2 | Community |
+| **Professional** | $199 | 25 | 3,000 | 10 | Email + Chat |
+| **Business** | $599 | Unlimited | 15,000 | 50 | Priority |
+| **Enterprise** | Custom | Unlimited | Unlimited | Unlimited | Dedicated |
+
+See [PRICING_STRATEGY.md](docs/PRICING_STRATEGY.md) for detailed pricing model.
+
+---
+
+## Technology Stack
+
+### Backend
+- **Runtime**: Node.js/TypeScript, Python for ML
+- **Frameworks**: Express.js/Fastify, FastAPI
+- **Orchestration**: Temporal.io or Apache Airflow
+- **Message Queue**: Apache Kafka, RabbitMQ
+- **Container**: Docker & Kubernetes
+
+### Data Layer
+- **Primary DB**: PostgreSQL
+- **Time-Series**: InfluxDB/TimescaleDB
+- **Document Store**: MongoDB
+- **Cache**: Redis
+- **Vector DB**: Pinecone/Weaviate
+
+### Frontend
+- **Framework**: Next.js 14+
+- **UI Library**: Shadcn/ui
+- **Workflow Visualization**: React Flow
+- **Charts**: Recharts
+
+### Observability
+- **Tracing**: OpenTelemetry + Jaeger
+- **Metrics**: Prometheus + Grafana
+- **Logging**: ELK Stack or Loki
+- **APM**: Langfuse or Arize AI
+
+See [TECH_STACK.md](docs/TECH_STACK.md) for detailed recommendations.
+
+---
+
+## Implementation Roadmap
+
+### Phase 1: Foundation (Months 1-3)
+- Core infrastructure setup
+- Workflow engine MVP
+- Basic agent orchestration
+- 5 core agent types
+- Integration framework
+
+### Phase 2: Product Enhancement (Months 4-6)
+- Advanced orchestration (parallel, conditional)
+- Comprehensive observability
+- 50+ integrations
+- Enterprise security features
+
+### Phase 3: Scale & Optimize (Months 7-12)
+- AI/ML enhancements
+- Template marketplace
+- Multi-region deployment
+- Compliance certifications (SOC 2, GDPR, HIPAA)
+
+See [ROADMAP.md](docs/ROADMAP.md) for detailed implementation timeline.
+
+---
+
+## Data Models
+
+### Core Entities
+- **Organization**: Multi-tenant structure with subscription management
+- **Workflow**: DAG-based workflow definitions with version control
+- **Agent**: Agent configurations with model settings and tool access
+- **WorkflowExecution**: Execution instances with status tracking
+- **AgentExecution**: Individual agent run logs
+- **Metrics**: Performance metrics and evaluation results
+
+See [DATA_MODELS.md](docs/DATA_MODELS.md) for complete schema definitions.
+
+---
+
+## Security & Compliance
+
+### Data Protection
+- End-to-end encryption (TLS 1.3)
+- Encryption at rest (AES-256)
+- Secrets management with HashiCorp Vault
+- API key rotation policies
+
+### Access Controls
+- Multi-factor authentication (MFA)
+- IP whitelisting for enterprise
+- Role-based access control (RBAC)
+- Session management with automatic timeout
+
+### Compliance Framework
+- SOC 2 Type II certification (planned Month 9-12)
+- GDPR compliance with DPA
+- CCPA compliance
+- HIPAA ready
+- Regular security audits
+
+See [SECURITY.md](docs/SECURITY.md) for detailed security architecture.
+
+---
+
+## Getting Started with Development
+
+### Prerequisites
+- Node.js 18+
+- Docker & Docker Compose
+- PostgreSQL 14+
+- Git
+
+### Development Setup
+```bash
+# Clone repository
+git clone https://github.com/garrettc123/ai-ops-studio.git
+cd ai-ops-studio
+
+# Install dependencies
+npm install
+
+# Setup environment
+cp .env.example .env.local
+
+# Start services
+docker-compose up -d
+
+# Run migrations
+npm run db:migrate
+
+# Start dev server
+npm run dev
+```
+
+### Running Tests
+```bash
+npm run test              # Unit tests
+npm run test:e2e          # End-to-end tests
+npm run test:coverage     # Coverage report
+```
+
+---
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+### Development Workflow
+1. Create feature branch from `develop`
+2. Make changes and add tests
+3. Submit pull request with description
+4. Await review and approval
+5. Merge to `develop`, then to `main` for release
+
+---
+
+## Documentation
+
+Complete documentation is available in the `docs/` folder:
+
+- [System Architecture](docs/ARCHITECTURE.md)
+- [Data Models & Schemas](docs/DATA_MODELS.md)
+- [Technology Stack](docs/TECH_STACK.md)
+- [Implementation Roadmap](docs/ROADMAP.md)
+- [Pricing Strategy](docs/PRICING_STRATEGY.md)
+- [Security & Compliance](docs/SECURITY.md)
+
+---
+
+## Support
+
+- **Documentation**: [docs/](docs/)
+- **Issues**: [GitHub Issues](https://github.com/garrettc123/ai-ops-studio/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/garrettc123/ai-ops-studio/discussions)
+- **Email**: support@aiopsstudio.com (coming soon)
+
+---
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Roadmap Highlights
+
+**2025 Q1**: Foundation & MVP
+- Core workflow engine
+- 5 agent types
+- Basic integrations
+
+**2025 Q2**: Enhancement & Scale
+- Advanced orchestration
+- 50+ integrations
+- Enterprise features
+
+**2025 Q3-Q4**: Growth & Optimization
+- AI/ML enhancements
+- Marketplace
+- Global scaling
+
+---
+
+## Questions?
+
+For questions or more information:
+- Open an [Issue](https://github.com/garrettc123/ai-ops-studio/issues)
+- Start a [Discussion](https://github.com/garrettc123/ai-ops-studio/discussions)
+- Check the [Documentation](docs/)
+
+---
+
+**Built with ❤️ for teams that want to automate their operations with AI**
